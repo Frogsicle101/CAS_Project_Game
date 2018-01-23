@@ -1,3 +1,4 @@
+import rooms
 #this is a file to test python
 print("Hello World")
 room1 = Room(0, 0)
