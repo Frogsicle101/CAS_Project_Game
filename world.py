@@ -8,4 +8,4 @@ while True:
     if entry == "die":
         break
     entry = int(entry)
-    print(world[entry].introText)
+    print(world[entry].introText())
