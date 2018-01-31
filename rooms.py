@@ -8,10 +8,10 @@ class Room:
     def getContained(self):
         return self.contained
 
-    class Corridor(Room):
-        def introText(self):
-            return """You are in a corridor"""
+class Corridor(Room):
+    def introText(self):
+        return """You are in a corridor"""
 
-    class OtherRoom(Room):
-        def introText(self):
-            return """You are in some random other room"""
+class OtherRoom(Room):
+    def introText(self):
+        return """You are in some random other room"""
