@@ -3,7 +3,7 @@ import rooms as tile
 import interactive as lever
 
 def doThing():
-    print("Hello")
+    world[0][2].setOpen(True)
 
 def play():
     stillPlaying = True
@@ -37,7 +37,7 @@ def play():
 
 
 world = [
-    [tile.Corridor([]), tile.DoorRoom([])],
+    [tile.Corridor([]), tile.DoorRoom([]), tile.WinRoom([])],
     [tile.Corridor([])],
     [tile.OtherRoom([lever.Lever(doThing)])]
     ]
