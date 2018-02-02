@@ -1,7 +1,11 @@
 #The main game world
 import rooms as tile
 
-world = [tile.Corridor([]), tile.OtherRoom([])]
+world = [
+    [tile.Corridor([]), tile.OtherRoom([])]
+    [tile.Corridor([])]
+    [tile.OtherRoom(Lever())]
+    ]
 
 while True:
     entry = input("0 or 1")
