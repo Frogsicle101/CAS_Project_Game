@@ -9,6 +9,9 @@ class Room:
     def getContained(self):
         return self.contained
 
+    def setOpen(self, boolean):
+        self.open = boolean
+
 class Corridor(Room):
     def introText(self):
         return """You are in a corridor"""
