@@ -37,7 +37,7 @@ def play():
 
 
 world = [
-    [tile.Corridor([]), tile.DoorRoom([]), tile.WinRoom([])],
+    [tile.Corridor([]), tile.DoorRoom([]), tile.WinRoom()],
     [tile.Corridor([])],
     [tile.OtherRoom([lever.Lever(doThing)])]
     ]
