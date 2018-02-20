@@ -22,9 +22,14 @@ def play():
                 stillPlaying = False
             elif entry.split(" ")[0].lower() == "teleport":
                 try:
-                    x = int(entry.split(" ")[1])
-                    y = int(entry.split(" ")[2])
-                    inputValid = True
+                    testX = int(entry.split(" ")[1])
+                    testY = int(entry.split(" ")[2])
+                    if world[testX][testY].getOpen():
+                        x = testX
+                        y = testY
+                        inputValid = True
+                    else:
+                        print("Room is locked")
                 except IndexError():
                     print("Out of range")
             elif entry == "pull lever":
