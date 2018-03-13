@@ -1,6 +1,7 @@
 #The main game world
 import rooms as tile
 import interactive as lever
+import getInput
 
 def doThing():
     world[0][2].setOpen(True)
@@ -16,7 +17,26 @@ def play():
 
         inputValid = False
         while not inputValid:
-            entry = input(">>> ").lower()
+            try:
+                getInput()
+                inputValid = True
+            except:
+                print("Invalid Input\n\n")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            """entry = input(">>> ").lower()
             if entry == "quit":
                 inputValid = True
                 stillPlaying = False
@@ -36,7 +56,7 @@ def play():
                 for object in currentRoom.getContained():
                     if isinstance(object, lever.Lever):
                         object.getAction()
-                        inputValid = True
+                        inputValid = True"""
 
 
 
