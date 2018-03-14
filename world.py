@@ -9,20 +9,17 @@ def doThing():
 
 def play():
     stillPlaying = True
-    x = 0
-    y = 0
-    thePlayer = players.Player()
+    thePlayer = players.Player(10, [0, 0], []) #creates player with nothing in inventory
     while stillPlaying:
-        currentRoom = world[x][y]
-        print("\n\n-------\nYou are at {}, {}".format(x, y))
+        currentRoom = world[thePlayer.position[0]][thePlayer.position[1]]
+        print("\n\n-------\nYou are at {}, {}".format(thePlayer.position[0], thePlayer.position[1]))
         print(currentRoom.introText())
-
         inputValid = False
         while not inputValid:
             try:
-                getInput()
+                getInput.enterCommand(thePlayer, world)
                 inputValid = True
-            except:
+            except ValueError:
                 print("Invalid Input\n\n")
 
 
