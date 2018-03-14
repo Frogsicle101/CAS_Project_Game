@@ -2,6 +2,7 @@
 import rooms as tile
 import interactive as lever
 import getInput
+import players
 
 def doThing():
     world[0][2].setOpen(True)
@@ -10,6 +11,7 @@ def play():
     stillPlaying = True
     x = 0
     y = 0
+    thePlayer = players.Player()
     while stillPlaying:
         currentRoom = world[x][y]
         print("\n\n-------\nYou are at {}, {}".format(x, y))
