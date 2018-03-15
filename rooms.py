@@ -17,7 +17,7 @@ class Room:
 
 class Corridor(Room):
     def introText(self):
-        return """You are in a corridor"""
+        return """You are in a hallway"""
 
 class OtherRoom(Room):
     def introText(self):
