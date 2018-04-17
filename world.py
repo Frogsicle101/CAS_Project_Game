@@ -3,6 +3,8 @@ import rooms as tile
 import interactive as lever
 import getInput
 import players
+import enemies
+import items
 
 def doThing():
     world[0][2].setOpen(True)
@@ -14,6 +16,10 @@ def play():
         currentRoom = world[thePlayer.position[0]][thePlayer.position[1]]
         print("\n\n-------\nYou are at {}, {}".format(thePlayer.position[0], thePlayer.position[1]))
         print(currentRoom.introText())
+        for thing in currentRoom.getContained():
+            if type(thing) is enemies.Enemy:
+                thePlayer.enterCombat(thing)
+
         inputValid = False
         while not inputValid:
             try:
@@ -23,7 +29,7 @@ def play():
                 print("Invalid Input\n\n")
 
 world = [
-    [tile.Corridor([]), tile.DoorRoom([]), tile.WinRoom()],
+    [tile.Corridor([enemies.Enemy("Bad", 5, items.Weapon("Stick", 3, 3), 3)]), tile.DoorRoom([]), tile.WinRoom()],
     [tile.Corridor([])],
     [tile.OtherRoom([lever.Lever(doThing)])],
     [tile.Corridor([])]

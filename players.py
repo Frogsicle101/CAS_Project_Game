@@ -5,4 +5,9 @@ class Player:
         self.position = position #list of two ints
         self.inventory = inventory #list of item objects
     def takeDamage(self, amount):
-        health -= amount
+        self.health -= amount
+    def isDead(self):
+        return self.health > 0
+
+    def enterCombat(self, enemy):
+        
