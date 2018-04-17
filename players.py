@@ -4,3 +4,5 @@ class Player:
         self.health = health #int
         self.position = position #list of two ints
         self.inventory = inventory #list of item objects
+    def takeDamage(self, amount):
+        health -= amount
