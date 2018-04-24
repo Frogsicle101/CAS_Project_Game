@@ -4,13 +4,15 @@ import actions as a
 def enterCommand(player, world, inCombat):
     userInput = input(">>> ").lower()
     splitInput = userInput.split(" ", 1)
-    splitInput.append(False) #We do this so functions with no args are still passed something
 
     valid = False
     for func in a.normalCommands:
         if func.__name__ == splitInput[0]:
             valid = True
-            return func(player, world, splitInput[1])
+                try:
+                    return func(player, world, splitInput[1])
+                except IndexError:
+                    return func(player, world)
             break
     else:
         for func in a.combatCommands:
