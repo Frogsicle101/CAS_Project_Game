@@ -10,23 +10,25 @@ def doThing():
 
 def play():
     stillPlaying = True
-    thePlayer = entities.Player(10, [0, 0], [], 1) #creates player with nothing in inventory
+    thePlayer = entities.Player(10, [0, 0], [], 10) #creates player with nothing in inventory
     while stillPlaying:
         currentRoom = world[thePlayer.position[0]][thePlayer.position[1]]
-        print("\n\n-------\nYou are at {}, {}".format(thePlayer.position[0], thePlayer.position[1]))
-        print(currentRoom.introText())
+
         for thing in currentRoom.getContained():
             if type(thing) is entities.Enemy:
-                thePlayer.enterCombat(thing)
-                if not thePlayer.isAlive():
-                    endGame()
-                else:
-                    print("Enemy defeated")
+                inCombat = True
+                enemy = thing
+
+        print("\n\n-------\nYou are at {}, {}".format(thePlayer.position[0], thePlayer.position[1]))
+        if inCombat:
+            print("You are in combat with {}! Your Health:{}. Enemy Health:{}".format(enemy.name, thePlayer.health, enemy.health))
+        else:
+            print(currentRoom.introText())
 
         inputValid = False
         while not inputValid:
             try:
-                getInput.enterCommand(thePlayer, world)
+                getInput.enterCommand(thePlayer, world, inCombat)
                 inputValid = True
             except ValueError:
                 print("Invalid Input\n\n")

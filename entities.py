@@ -22,18 +22,8 @@ class Player(Entity):
     def __init__(self, health, position, inventory, skill):
         self.position = position #list of two ints
         self.inventory = inventory #list of item objects
+        self.weapon = items.Weapon("kajsdf", 15, 2)
         super().__init__(health, skill)
-
-    def enterCombat(self, enemy):
-        while self.isAlive() and enemy.isAlive():
-            print("You are in combat with {}! Your Health:{}. Your Enemy {}".format(enemy.name, self.health, enemy.health))
-            entry = input(">>>")
-            if entry == "Attack":
-                self.attack(enemy)
-            enemy.attack(self)
-
-
-
 
 #Enemies
 class Enemy(Entity):
