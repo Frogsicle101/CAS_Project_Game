@@ -9,10 +9,10 @@ def enterCommand(player, world, inCombat):
     for func in a.normalCommands:
         if func.__name__ == splitInput[0]:
             valid = True
-                try:
-                    return func(player, world, splitInput[1])
-                except IndexError:
-                    return func(player, world)
+            try:
+                return func(player, world, splitInput[1].lower())
+            except IndexError:
+                return func(player, world)
             break
     else:
         for func in a.combatCommands:
