@@ -1,5 +1,6 @@
 #This file stores all the possible actions that a player can do
 import entities
+import copy
 
 
 def close(player, world, args):
@@ -20,8 +21,9 @@ def teleport(player, world, args):
     except ValueError:
         print("Out of range")
 
-def go(player, world, args):
+def go(inputPlayer, world, args):
     """Allows the player to move around the world"""
+    player = copy.deepcopy(inputPlayer)
     try:
         if args == "north":
             player.position[0] = player.position[0] - 1
@@ -31,8 +33,12 @@ def go(player, world, args):
             player.position[1] = player.position[1] + 1
         elif args == "west":
             player.position[1] = player.position[1] - 1
-    except ValueError:
+        assert(player.position[0] < -1 and player.position[1] > 0)
+        test = world(player.position[0], player.position[1])
+    except (AssertionError, IndexError):
         print("You can't go that way")
+    else:
+        inputPlayer.position = player.position
 
 
 
