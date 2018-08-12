@@ -3,7 +3,7 @@ import entities
 import copy
 
 
-def close(player, world, args):
+def close(player, world):
     """Ends the program"""
     print("\n\nThank you for playing")
     exit()

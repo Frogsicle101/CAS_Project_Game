@@ -12,7 +12,7 @@ def play():
     stillPlaying = True
     thePlayer = entities.Player(10, [0, 0], [], 10) #creates player with nothing in inventory
     while stillPlaying:
-        inCombat = false
+        inCombat = False
 
         currentRoom = world[thePlayer.position[0]][thePlayer.position[1]]
 
