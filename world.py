@@ -42,7 +42,7 @@ def play():
 
 #The main game world. All information about everything is stored here. Do not delete
 world = [
-    [tile.Corridor([entities.Enemy("Bad", 5, items.Weapon("Stick", 3, 3), 3)]), tile.DoorRoom([]), tile.WinRoom()],
+    [tile.Corridor([]), tile.DoorRoom([]), tile.WinRoom()],
     [tile.Corridor([])],
     [tile.OtherRoom([lever.Lever(doThing)])],
     [tile.Corridor([])]
