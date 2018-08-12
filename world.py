@@ -18,7 +18,7 @@ def play():
 
 
         #Checks if enemies present in current room
-        for thing in currentRoom.getContained():
+        for thing in currentRoom.contained:
             if type(thing) is entities.Enemy:
                 inCombat = True
                 enemy = thing
@@ -42,7 +42,7 @@ def play():
 
 #The main game world. All information about everything is stored here. Do not delete
 world = [
-    [tile.Corridor([]), tile.DoorRoom([]), tile.WinRoom()],
+    [tile.Corridor([]), tile.DoorRoom([]), tile.WinRoom([])],
     [tile.Corridor([])],
     [tile.OtherRoom([lever.Lever(doThing)])],
     [tile.Corridor([])]

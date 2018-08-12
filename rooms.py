@@ -6,15 +6,6 @@ class Room:
     def introText(self):
         raise NotImplementedError
 
-    def getContained(self):
-        return self.contained
-
-    def setOpen(self, boolean):
-        self.open = boolean
-
-    def getOpen(self):
-        return self.open;
-
 class Corridor(Room):
     def introText(self):
         return """You are in a corridor"""
@@ -28,7 +19,8 @@ class DoorRoom(Room):
         return """You are in a room with a large imposing door"""
 
 class WinRoom(Room):
-    def __init__(self):
+    def __init__(self, contained):
+        super().__init__(contained)
         self.open = False
 
     def introText(self):
