@@ -24,18 +24,20 @@ def teleport(player, world, args):
 def go(inputPlayer, world, args):
     """Allows the player to move around the world"""
     player = copy.deepcopy(inputPlayer)
+    args = args.lower()
     try:
         if args == "north":
-            player.position[0] = player.position[0] - 1
+            player.position[0] -= 1
         elif args == "south":
-            player.position[0] = player.position[0] + 1
+            player.position[0] += 1
         elif args == "east":
-            player.position[1] = player.position[1] + 1
+            player.position[1] += 1
         elif args == "west":
-            player.position[1] = player.position[1] - 1
-        assert(player.position[0] < -1 and player.position[1] > 0)
-        test = world(player.position[0], player.position[1])
-    except (AssertionError, IndexError):
+            player.position[1] -= 1
+        assert(player.position[0] >= 0 and player.position[1] >= 0)
+        print(player.position[0] < -1 and player.position[1] > 0)
+        world[player.position[0]][player.position[1]]
+    except(AssertionError, IndexError):
         print("You can't go that way")
     else:
         inputPlayer.position = player.position
