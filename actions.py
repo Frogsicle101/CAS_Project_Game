@@ -35,7 +35,6 @@ def go(inputPlayer, world, args):
         elif args == "west":
             player.position[1] -= 1
         assert(player.position[0] >= 0 and player.position[1] >= 0)
-        print(player.position[0] < -1 and player.position[1] > 0)
         world[player.position[0]][player.position[1]]
     except(AssertionError, IndexError):
         print("You can't go that way")
