@@ -1,7 +1,7 @@
 import actions as a
 #This file is used for getting commands from the user
 
-def enterCommand(player, world, inCombat):
+def enterCommand(player, world):
     userInput = input(">>> ").lower()
     splitInput = userInput.split(" ", 1)
 

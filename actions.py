@@ -1,6 +1,7 @@
 #This file stores all the possible actions that a player can do
 import entities
 import copy
+import combat
 
 
 def close(player, world):
@@ -41,7 +42,18 @@ def go(inputPlayer, world, args):
     else:
         inputPlayer.position = player.position
 
+def fight(player, world, args):
+    foundTarget = False
+    for thing in world[player.position[0]][player.position[1]].contained:
+        if type(thing) is entities.Enemy and args == thing.name:
+            foundTarget = True
+            target = thing
 
+    if foundTarget:
+        combat.enter(player, world, thing)
+    else:
+        print(args + " cannot be attacked")
+    #print("You are in combat with {}! Your Health:{}. Enemy Health:{}".format(enemy.name, thePlayer.health, enemy.health))
 
 def attack(player, world):
     for thing in world[player.position[0]][player.position[1]].getContained():
@@ -49,5 +61,5 @@ def attack(player, world):
             target = thing
     player.attack(target)
 
-normalCommands = [teleport, close, go]
+normalCommands = [teleport, close, go, fight]
 combatCommands = [attack]

@@ -5,46 +5,44 @@ import getInput
 import entities
 import items
 
-def doThing():
-    world[0][2].setOpen(True)
+import time
 
 def play():
     stillPlaying = True
     thePlayer = entities.Player(10, [0, 0], [], 10) #creates player with nothing in inventory
     while stillPlaying:
-        inCombat = False
 
         currentRoom = world[thePlayer.position[0]][thePlayer.position[1]]
 
-
-        #Checks if enemies present in current room
-        for thing in currentRoom.contained:
-            if type(thing) is entities.Enemy:
-                inCombat = True
-                enemy = thing
-
         #Displays messages about situation to player
         print("\n\n-------\nYou are at {}, {}".format(thePlayer.position[0], thePlayer.position[1]))
-        if inCombat:
-            print("You are in combat with {}! Your Health:{}. Enemy Health:{}".format(enemy.name, thePlayer.health, enemy.health))
-        else:
-            print(currentRoom.introText())
+        print(currentRoom.introText())
+        displayContained(currentRoom)
 
         #Gets user input
         inputValid = False
         while not inputValid:
             try:
-                getInput.enterCommand(thePlayer, world, inCombat)
+                getInput.enterCommand(thePlayer, world)
                 inputValid = True
             except ValueError:
                 print("Invalid Input\n\n")
+        time.sleep(1)
 
+
+def displayContained(currentRoom):
+    print("There is: ", end="")
+    for thing in currentRoom.contained:
+        print(thing.name, end=", ")
+    print(" here")
 
 #The main game world. All information about everything is stored here. Do not delete
+weapon = items.Weapon("stabby", 5, 3)
+steve = entities.Enemy("steve", 5, weapon, 2)
 world = [
-    [tile.Corridor([]), tile.DoorRoom([]), tile.WinRoom([])],
+    [tile.Corridor([steve]), tile.DoorRoom([]), tile.WinRoom([])],
     [tile.Corridor([])],
-    [tile.OtherRoom([lever.Lever(doThing)])],
+    [tile.OtherRoom([])],
     [tile.Corridor([])]
     ]
 
