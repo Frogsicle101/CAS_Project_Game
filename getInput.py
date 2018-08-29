@@ -14,10 +14,6 @@ def enterCommand(player, world):
             except IndexError:
                 return func(player, world)
             break
-    else:
-        for func in a.combatCommands:
-            if func.__name__ == splitInput[0]:
-                return func(player, world)
 
 
     if not valid :

@@ -45,21 +45,14 @@ def go(inputPlayer, world, args):
 def fight(player, world, args):
     foundTarget = False
     for thing in world[player.position[0]][player.position[1]].contained:
-        if type(thing) is entities.Enemy and args == thing.name:
+        if type(thing) is entities.Enemy and args == thing.name and thing.isAlive():
             foundTarget = True
             target = thing
 
     if foundTarget:
-        combat.enter(player, world, thing)
+        combat.enter(player, world, target)
     else:
         print(args + " cannot be attacked")
-    #print("You are in combat with {}! Your Health:{}. Enemy Health:{}".format(enemy.name, thePlayer.health, enemy.health))
 
-def attack(player, world):
-    for thing in world[player.position[0]][player.position[1]].getContained():
-        if type(thing) is entities.Enemy:
-            target = thing
-    player.attack(target)
 
 normalCommands = [teleport, close, go, fight]
-combatCommands = [attack]
