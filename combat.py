@@ -15,7 +15,7 @@ def enter(player, world, target):
                     player.attack(target)
                 elif command == "flee":
                     stillFighting = False
-                    flee()
+                    player.flee()
                 else:
                     print("Invalid Input\n\n")
                     inputValid = False

@@ -18,12 +18,15 @@ class Entity:
         if random.randint(0, 9) < self.skill:
             target.takeDamage(self.weapon.damage)
 
+
 class Player(Entity):
     def __init__(self, health, position, inventory, skill):
         self.position = position #list of two ints
         self.inventory = inventory #list of item objects
         self.weapon = items.Weapon("kajsdf", 15, 2)
         super().__init__(health, skill)
+    def flee():
+        raise NotImplementedError
 
 #Enemies
 class Enemy(Entity):
