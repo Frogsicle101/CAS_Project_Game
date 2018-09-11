@@ -47,11 +47,13 @@ def displayContained(currentRoom):
 
 #The main game world. All information about everything is stored here. Do not delete
 weapon = items.Weapon("stabby", 5, 3)
+fangs = items.Weapon("fangs", 5. 3)
 steve = entities.Enemy("steve", 5, weapon, 2)
+Wolf = entities.Enemy("Wolf", 5, fangs, 2)
 world = [
-    [tile.Corridor([steve,  copy.deepcopy(steve)]), tile.DoorRoom([]), tile.WinRoom([])],
+    [tile.Corridor([steve,  copy.deepcopy(steve)]), tile.DoorRoom([]), tile.IceAgeRoom([Wolf, copy.deepcopy(Wolf)])] tile.WinRoom([])],
     [tile.Corridor([])],
-    [title.IceAgeRoom([])]
+    [tile.IceAgeRoom([])],
     [tile.OtherRoom([])],
     [tile.Corridor([])]
     ]
