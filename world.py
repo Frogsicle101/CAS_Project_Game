@@ -49,8 +49,9 @@ def displayContained(currentRoom):
 weapon = items.Weapon("stabby", 5, 3)
 steve = entities.Enemy("steve", 5, weapon, 2)
 world = [
-    [tile.Corridor([steve, copy.deepcopy(steve)]), tile.DoorRoom([]), tile.WinRoom([])],
+    [tile.Corridor([steve,  copy.deepcopy(steve)]), tile.DoorRoom([]), tile.WinRoom([])],
     [tile.Corridor([])],
+    [title.IceAgeRoom([])]
     [tile.OtherRoom([])],
     [tile.Corridor([])]
     ]
