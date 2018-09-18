@@ -11,7 +11,7 @@ import copy
 def play():
     """The main method that runs the entire game"""
     stillPlaying = True
-    thePlayer = entities.Player(10, [0, 0], [], 10) #creates player with nothing in inventory
+    thePlayer = entities.Player(16, [0, 0], [], 10) #creates player with nothing in inventory
     while stillPlaying:
 
         currentRoom = world[thePlayer.position[0]][thePlayer.position[1]]
@@ -31,6 +31,23 @@ def play():
                 print("Invalid Input\n\n")
         time.sleep(1)
 
+def playTurn():
+    currentRoom = world[thePlayer.position[0]][thePlayer.position[1]]
+
+    #Displays messages about situation to player
+    print("\n\n-------\nYou are at {}, {}".format(thePlayer.position[0], thePlayer.position[1]))
+    print(currentRoom.introText())
+    displayContained(currentRoom)
+
+    #Gets user input
+    inputValid = False
+    while not inputValid:
+        try:
+            getInput.enterCommand(thePlayer, world)
+            inputValid = True
+        except ValueError:
+            print("Invalid Input\n\n")
+    time.sleep(1)
 
 def displayContained(currentRoom):
     """Prints all items and entities in the room passed to it"""
