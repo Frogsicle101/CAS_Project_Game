@@ -5,7 +5,7 @@ def runGame():
     string = string.lower()
     print (string)
     inputTextBox.delete(0, END)
-    #run freddy code here()
+    #run freddy code here() (fileLocation.py.play(string)
     #if you take damage, i++ then root["bg"] = screenred[i], if you heal, i-- then root["bg"] = screenred[i]
 
 def textIn(text);
