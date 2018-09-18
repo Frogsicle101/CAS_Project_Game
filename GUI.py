@@ -8,6 +8,10 @@ def runGame():
     #run freddy code here()
     #if you take damage, i++ then root["bg"] = screenred[i], if you heal, i-- then root["bg"] = screenred[i]
 
+def textIn(text);
+    global T
+    T.insert(END, text+"\n")
+    
 b = '#000000'
 br = '#550000'
 rb = '#AA0000'
