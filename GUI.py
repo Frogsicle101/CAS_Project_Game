@@ -1,19 +1,24 @@
 from tkinter import *
-def printtext():
-    global e
-    string = e.get()
-    e.
+def runGame():
+    global inputTextBox
+    string = inputTextBox.get()
+    string = string.lower()
+    print (string)
+    inputTextBox.delete(0, END)
+    #run freddy code here()
+    #if you take damage, i++ then root["bg"] = screenred[i], if you heal, i-- then root["bg"] = screenred[i]
 
 b = '#000000'
 br = '#550000'
 rb = '#AA0000'
 r = '#FF0000'
 screenred= [b, br, rb, r]
-i = 0
+screenredindex = 0
 root = Tk()
 
 root.geometry("800x400")
-root["bg"] = screenred[i]
+root["bg"] = screenred[screenredindex]
+
 S = Scrollbar(root)
 T = Text(root, height=10, width=50)
 S.pack(side=RIGHT, fill=Y)
@@ -22,14 +27,11 @@ S.config(command=T.yview)
 T.config(yscrollcommand=S.set)
 root.title('Name')
 
-e = Entry(root)
-e.pack()
-e.focus_set()
+inputTextBox = Entry(root)
+inputTextBox.pack()
+inputTextBox.focus_set()
 
-b = Button(root,text='okay',command=printtext)
+b = Button(root,text='Enter',command=runGame)
 b.pack(side='bottom')
-
-    #run freddy code here()
-    #if you take damage, i++, if you heal, i--
 
 root.mainloop()
