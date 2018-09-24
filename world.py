@@ -9,6 +9,7 @@ import time
 import copy
 
 def play():
+    """The main method that runs the entire game"""
     stillPlaying = True
     thePlayer = entities.Player(10, [0, 0], [], 10) #creates player with nothing in inventory
     while stillPlaying:
@@ -32,6 +33,7 @@ def play():
 
 
 def displayContained(currentRoom):
+    """Prints all items and entities in the room passed to it"""
     print("There is: ", end="")
     for i, thing in enumerate(currentRoom.contained):
         if type(thing) is entities.Enemy:
@@ -49,7 +51,7 @@ def displayContained(currentRoom):
 weapon = items.Weapon("stabby", 5, 3)
 steve = entities.Enemy("steve", 5, weapon, 2)
 world = [
-    [tile.Corridor([steve, copy.deepcopy(steve)]), tile.DoorRoom([]), tile.WinRoom([])],
+    [tile.Corridor([steve]), tile.DoorRoom([]), tile.WinRoom([])],
     [tile.Corridor([])],
     [tile.OtherRoom([])],
     [tile.Corridor([])]
