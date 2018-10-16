@@ -40,6 +40,7 @@ def go(inputPlayer, world, args):
     except(AssertionError, IndexError):
         print("You can't go that way")
     else:
+        inputPlayer.previousPosition = inputPlayer.position
         inputPlayer.position = player.position
 
 def fight(player, world, args):
