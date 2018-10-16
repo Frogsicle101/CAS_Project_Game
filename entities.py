@@ -19,14 +19,17 @@ class Entity:
             target.takeDamage(self.weapon.damage)
 
 
+
 class Player(Entity):
     def __init__(self, health, position, inventory, skill):
         self.position = position #list of two ints
         self.inventory = inventory #list of item objects
         self.weapon = items.Weapon("kajsdf", 15, 2)
+        self.previousPosition = position
         super().__init__(health, skill)
-    def flee():
-        raise NotImplementedError
+    def flee(self):
+        #player returns to their previous location
+        self.position = self.previousPosition
 
 #Enemies
 class Enemy(Entity):
