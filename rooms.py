@@ -1,4 +1,5 @@
 class Room:
+    """Generic class for all rooms"""
     def __init__(self, contained):
         self.contained = contained
         self.open = True
