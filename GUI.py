@@ -47,9 +47,10 @@ def enterCommand(player, world):
         raise ValueError()
 
 def output(text):
+    T.configure(state='normal')
     T.insert(END, text + "\n")
     T.see(END)
-
+    T.configure(state="disabled")
 
 b = '#000000'
 br = '#550000'
@@ -65,21 +66,26 @@ root.geometry("800x400")
 root["bg"] = screenred[screenredindex]
 
 S = Scrollbar(root)
-T = Text(root, height=10, width=50)
+T = Text(root, height=10, width=50, state="disabled")
 S.pack(side=RIGHT, fill=Y)
-T.place(relx=.5, rely=.75, anchor="center")
+#T.place(relx=.5, rely=.75, anchor="center")
+#T.pack(side=BOTTOM)
 S.config(command=T.yview)
 T.config(yscrollcommand=S.set)
 root.title('Name')
 
-inputTextBox = Entry(root)
-inputTextBox.pack()
+inputFrame = Frame(root, width=50)
+inputFrame.pack(side=BOTTOM)
+inputTextBox = Entry(inputFrame)
 inputTextBox.focus_set()
 
-b = Button(root,text='Enter',command=runGame)
-b.pack(side='bottom')
+b = Button(inputFrame,text='Enter',command=runGame)
 root.bind('<Return>', runGame)
 
+
+b.pack(side=RIGHT)
+inputTextBox.pack(side=LEFT)
+T.pack(side=BOTTOM)
 
 thePlayer = entities.Player(16, [0, 0], [], 10) #creates player with nothing in inventory
 output("""Welcome to the Game
@@ -87,6 +93,7 @@ We hope you have fun""")
 
 weapon = items.Weapon("stabby", 5, 3)
 steve = entities.Enemy("steve", 5, weapon, 2)
+
 world = [
     [tile.Corridor([steve]), tile.DoorRoom([]), tile.WinRoom([])],
     [tile.Corridor([])],
