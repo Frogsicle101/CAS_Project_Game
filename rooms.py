@@ -28,9 +28,13 @@ class IceAgeRoom(Room):
         return """You step outside onto an expanse of brittle ice. Snowstorms surround you. A faint light can be seen in the distance."""
 
 class WinRoom(Room):
-    def __init__(self, contained):
-        super().__init__(contained)
+    def __init__(self):
+        super().__init__([])
         self.open = False
 
     def introText(self):
         return """You win"""
+
+class StartingRoom(Room):
+    def introText(self):
+        return """You have been crammed into a locker for hours. Just another day at Sunnyvale High."""
