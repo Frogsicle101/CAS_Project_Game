@@ -38,3 +38,25 @@ class WinRoom(Room):
 class StartingRoom(Room):
     def introText(self):
         return """You have been crammed into a locker for hours. Just another day at Sunnyvale High."""
+
+class MUNRoom(Room):
+    def introText(self):
+        return """You find yourself entering a classroom
+        with a row of nearly arrayed desks, each with a placard with a
+        country's name and a flag."""
+
+ class CodingClub(Room):
+     def intoText(self):
+         return """You enter a room that smells like the bottom of a chips packet. Dotted around the room
+         are the faint hues of monitors. Behind those
+         monitors, are the sunken faces of high-school
+         coders."""
+
+ class  Gym(Room):
+     def intoText(self):
+         return """Opening the metal door, you are greeted
+         to an imposing room. The gym was...different since the last time you visited. Where the ceiling once loomed over you, it is now impossible to see.  It's like you are at the bottom of a large hole, but what's up top?"""
+
+  class AnimeClub(Room):
+      def introText(Self):
+          return """Pushing open the door, you find yourself in a dark classroom. The only light in the room comes from a projector screen near the front of the classroom. On it, animated figures speak in rushed Japanese. The light """
