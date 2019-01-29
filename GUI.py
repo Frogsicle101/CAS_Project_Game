@@ -31,28 +31,47 @@ def runGame(*args):
     #if you take damage, i++ then root["bg"] = screenred[i], if you heal, i-- then root["bg"] = screenred[i]
 
 def enterCommand(player, world):
-    global inputTextBox
-    userInput = inputTextBox.get().lower()
-    inputTextBox.delete(0, END)
+    userInput = getGUIInput()
     splitInput = userInput.split(" ", 1)
     valid = False
     for func in a.normalCommands:
         if func.__name__ == splitInput[0]:
             valid = True
-
-            try:
-                return func(player, world, splitInput[1].lower())
-            except IndexError:
-                return func(player, world)
+            return func(player, world, splitInput[1])
             break
     if not valid:
         raise ValueError()
+
+buttonPressed = False
+userInput = ""
+
+def getInput():
+    global buttonPressed
+    buttonPressed = False
+    global userInput
+    userInput = ""
+
+
+    while True:
+        if buttonPressed:
+            break
+        root.update()
+    return userInput
+
+def press(event):
+    global buttonPressed
+    buttonPressed = True
+    global inputTextBox
+    global userInput
+    userInput = inputTextBox.get().lower()
+    inputTextBox.delete(0, END)
 
 def output(text):
     T.configure(state='normal')
     T.insert(END, text + "\n")
     T.see(END)
     T.configure(state="disabled")
+    root.update()
 
 b = '#000000'
 br = '#550000'
@@ -80,8 +99,8 @@ inputFrame.pack(side=BOTTOM)
 inputTextBox = Entry(inputFrame)
 inputTextBox.focus_set()
 
-b = Button(inputFrame,text='Enter',command=runGame)
-root.bind('<Return>', runGame)
+b = Button(inputFrame,text='Enter',command=press)
+root.bind('<Return>', press)
 
 
 b.pack(side=RIGHT)
@@ -107,4 +126,4 @@ currentRoom = world[thePlayer.position[0]][thePlayer.position[1]]
 output("\n\n-------\nYou are at {}, {}".format(thePlayer.position[0], thePlayer.position[1]))
 output(currentRoom.introText())
 
-root.mainloop()
+#root.mainloop()

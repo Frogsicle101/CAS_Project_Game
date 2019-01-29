@@ -1,4 +1,5 @@
 #combat
+#import GUI
 
 def enter(player, world, target):
     stillFighting = True
@@ -8,7 +9,7 @@ def enter(player, world, target):
 
             inputValid = False
             while not inputValid:
-                command = input(">>>").lower()
+                command = GUI.getGUIInput(">>>").lower()
                 inputValid = True
                 if command == "attack":
                     player.attack(target)
