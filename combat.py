@@ -1,7 +1,6 @@
 #combat
 
 def enter(player, world, target):
-
     stillFighting = True
     while stillFighting:
         if target.isAlive():

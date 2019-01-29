@@ -12,18 +12,20 @@ import copy
 
 def runGame(*args):
     try:
-        enterCommand(thePlayer, world)
+        toBeOutputted = (enterCommand(thePlayer, world))
+        if toBeOutputted != None:
+            T.after(1000, lambda: output(toBeOutputted))
     except ValueError:
         output("Invalid")
     finally:
         currentRoom = world[thePlayer.position[0]][thePlayer.position[1]]
         global screenredindex
         screenredindex = (16 - thePlayer.health)//4
-        output(str(screenredindex))
         root["bg"] = screenred[screenredindex]
+
         #Displays messages about situation to player
-        output("\n\n-------\nYou are at {}, {}".format(thePlayer.position[0], thePlayer.position[1]))
-        output(currentRoom.introText())
+        T.after(1000, lambda: output("\n\n-------\nYou are at {}, {}".format(thePlayer.position[0], thePlayer.position[1])))
+        T.after(1000, lambda: output(currentRoom.introText()))
 
     #run freddy code here()
     #if you take damage, i++ then root["bg"] = screenred[i], if you heal, i-- then root["bg"] = screenred[i]
@@ -61,17 +63,16 @@ global screenredindex
 screenredindex = 0
 root = Tk()
 
-
 root.geometry("800x400")
 root["bg"] = screenred[screenredindex]
 
 S = Scrollbar(root)
-T = Text(root, height=10, width=50, state="disabled")
+T = Text(root, height=10, width=50)
 S.pack(side=RIGHT, fill=Y)
 #T.place(relx=.5, rely=.75, anchor="center")
 #T.pack(side=BOTTOM)
 S.config(command=T.yview)
-T.config(yscrollcommand=S.set)
+T.config(yscrollcommand=S.set, state="disabled")
 root.title('Name')
 
 inputFrame = Frame(root, width=50)
@@ -105,4 +106,5 @@ currentRoom = world[thePlayer.position[0]][thePlayer.position[1]]
 #Displays messages about situation to player
 output("\n\n-------\nYou are at {}, {}".format(thePlayer.position[0], thePlayer.position[1]))
 output(currentRoom.introText())
+
 root.mainloop()
