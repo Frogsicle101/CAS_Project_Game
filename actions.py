@@ -38,7 +38,7 @@ def go(inputPlayer, world, args):
         assert(player.position[0] >= 0 and player.position[1] >= 0)
         world[player.position[0]][player.position[1]]
     except(AssertionError, IndexError):
-        print("You can't go that way")
+        return "You can't go that way"
     else:
         inputPlayer.previousPosition = inputPlayer.position
         inputPlayer.position = player.position

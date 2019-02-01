@@ -1,15 +1,15 @@
 #combat
+from GUI import *
 
 def enter(player, world, target):
-
     stillFighting = True
     while stillFighting:
         if target.isAlive():
-            print("You are in combat with {}! Your Health:{}. Enemy Health:{}".format(target.name, player.health, target.health))
+            output("You are in combat with {}! Your Health:{}. Enemy Health:{}".format(target.name, player.health, target.health))
 
             inputValid = False
             while not inputValid:
-                command = input(">>>").lower()
+                command = getInput().lower()
                 inputValid = True
                 if command == "attack":
                     player.attack(target)
@@ -17,8 +17,8 @@ def enter(player, world, target):
                     stillFighting = False
                     player.flee()
                 else:
-                    print("Invalid Input\n\n")
+                    output("Invalid Input\n\n")
                     inputValid = False
         else:
             stillFighting = False
-            print("You have defeated {}! Your Health:{}".format(target.name, player.health))
+            output("You have defeated {}! Your Health:{}".format(target.name, player.health))
