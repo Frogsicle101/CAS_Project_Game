@@ -87,15 +87,13 @@ root = Tk()
 
 root.geometry("800x400")
 root["bg"] = screenred[screenredindex]
+root.title("Game")
 
 S = Scrollbar(root)
 T = Text(root, height=10, width=50)
 S.pack(side=RIGHT, fill=Y)
-#T.place(relx=.5, rely=.75, anchor="center")
-#T.pack(side=BOTTOM)
 S.config(command=T.yview)
 T.config(yscrollcommand=S.set, state="disabled")
-root.title('Name')
 
 inputFrame = Frame(root, width=50)
 inputFrame.pack(side=BOTTOM)
@@ -109,10 +107,3 @@ root.bind('<Return>', press)
 b.pack(side=RIGHT)
 inputTextBox.pack(side=LEFT)
 T.pack(side=BOTTOM)
-
-
-#Displays messages about situation to player
-#output("\n\n-------\nYou are at {}, {}".format(thePlayer.position[0], thePlayer.position[1]))
-#output(currentRoom.introText())
-
-#root.mainloop()
