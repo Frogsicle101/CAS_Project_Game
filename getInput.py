@@ -1,8 +1,9 @@
 import actions as a
+import GUI
 #This file is used for getting commands from the user
 
 def enterCommand(player, world):
-    userInput = input(">>> ").lower()
+    userInput = GUI.getInput().lower()
     splitInput = userInput.split(" ", 1)
 
     valid = False

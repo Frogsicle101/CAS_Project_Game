@@ -1,10 +1,4 @@
 from tkinter import *
-import rooms as tile
-import interactive as lever
-import getInput
-import entities
-import items
-import actions as a
 
 import time
 import copy
@@ -66,9 +60,18 @@ def press(event):
     userInput = inputTextBox.get().lower()
     inputTextBox.delete(0, END)
 
-def output(text):
+def output(text, *args):
     T.configure(state='normal')
-    T.insert(END, text + "\n")
+    T.insert(END, text)
+
+    #If the first arg is True, or is not given, we append a newline
+    #otherwise, do not append
+    try:
+        if args[0]:
+            T.insert(END, "\n")
+    except IndexError:
+        T.insert(END, "\n")
+
     T.see(END)
     T.configure(state="disabled")
     root.update()
@@ -107,23 +110,9 @@ b.pack(side=RIGHT)
 inputTextBox.pack(side=LEFT)
 T.pack(side=BOTTOM)
 
-thePlayer = entities.Player(16, [0, 0], [], 10) #creates player with nothing in inventory
-output("""Welcome to the Game
-We hope you have fun""")
-
-weapon = items.Weapon("stabby", 5, 3)
-steve = entities.Enemy("steve", 5, weapon, 2)
-
-world = [
-    [tile.Corridor([steve]), tile.DoorRoom([]), tile.WinRoom([])],
-    [tile.Corridor([])],
-    [tile.OtherRoom([])],
-    [tile.Corridor([])]
-    ]
-currentRoom = world[thePlayer.position[0]][thePlayer.position[1]]
 
 #Displays messages about situation to player
-output("\n\n-------\nYou are at {}, {}".format(thePlayer.position[0], thePlayer.position[1]))
-output(currentRoom.introText())
+#output("\n\n-------\nYou are at {}, {}".format(thePlayer.position[0], thePlayer.position[1]))
+#output(currentRoom.introText())
 
 #root.mainloop()

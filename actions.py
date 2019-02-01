@@ -55,4 +55,4 @@ def fight(player, world, args):
         print(args + " cannot be attacked")
 
 
-normalCommands = [teleport, close, go]
+normalCommands = [teleport, close, go, fight]
