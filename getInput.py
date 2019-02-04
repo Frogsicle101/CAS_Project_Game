@@ -7,13 +7,13 @@ def enterCommand(player, world):
     splitInput = userInput.split(" ", 1)
 
     valid = False
-    for func in a.normalCommands:
-        if func.__name__ == splitInput[0]:
+    for action in a.normalCommands:
+        if splitInput[0] in action.commands:
             valid = True
             try:
-                return func(player, world, splitInput[1].lower())
+                return action.action(splitInput[1])
             except IndexError:
-                return func(player, world)
+                return action.action()
             break
 
 

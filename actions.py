@@ -3,13 +3,18 @@ import entities
 import copy
 import combat
 
+class Action:
+    commands = []
+    def __init__(self, commands, action):
+        self.commands = commands
+        self.action = action
+    def action(**kwargs):
+        raise NotImplementedError()
 
-def close(player, world):
-    """Ends the program"""
-    print("\n\nThank you for playing")
-    exit()
 
-def teleport(player, world, args):
+close = Action(["close", "exit", "end"], lambda: exit())
+
+def teleportAction(**kwargs):
     """Allows the user to teleport around"""
     try:
         if world[int(args.split(",")[0])][int(args.split(",")[1])].getOpen():
@@ -21,8 +26,9 @@ def teleport(player, world, args):
             print("Room is locked")
     except ValueError:
         print("Out of range")
+teleport = Action(["teleport"], teleportAction)
 
-def go(inputPlayer, world, args):
+def goAction(**kwargs):
     """Allows the player to move around the world"""
     player = copy.deepcopy(inputPlayer)
     args = args.lower()
@@ -42,8 +48,9 @@ def go(inputPlayer, world, args):
     else:
         inputPlayer.previousPosition = inputPlayer.position
         inputPlayer.position = player.position
+go = Action(["go"], goAction)
 
-def fight(player, world, args):
+def fight(**kwargs):
     foundTarget = False
     for thing in world[player.position[0]][player.position[1]].contained:
         if type(thing) is entities.Enemy and args == thing.name and thing.isAlive():
@@ -56,4 +63,4 @@ def fight(player, world, args):
         print(args + " cannot be attacked")
 
 
-normalCommands = [teleport, close, go, fight]
+normalCommands = [close]
