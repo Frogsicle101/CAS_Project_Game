@@ -54,9 +54,12 @@ class MUNRoom(Room):
 
  class  Gym(Room):
      def intoText(self):
-         return """Opening the metal door, you are greeted
-         to an imposing room. The gym was...different since the last time you visited. Where the ceiling once loomed over you, it is now impossible to see.  It's like you are at the bottom of a large hole, but what's up top?"""
+         return """Entering the gym, you are greeted with squeaky floors and a ceiling that's infinitely high."""
 
   class AnimeClub(Room):
       def introText(Self):
-          return """Pushing open the door, you find yourself in a dark classroom. The only light in the room comes from a projector screen near the front of the classroom. On it, animated figures speak in rushed Japanese. The light """
+          return """Pushing open the door, you find yourself in a dark classroom. The only light in the room comes from a projector screen near the front of the classroom. On it, animated figures speak in rushed Japanese."""
+
+  class EnglishRoom(Room):
+      def introText(Self):
+          return """You find yourself in a room covered in the scent of old carpet, creaky floorboards, and rancid coffee. The rancid coffee scent originates from a decaying blue mug. Holding that blue mug is the hook-nosed Ms. Crowley, your English teacher. """
