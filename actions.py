@@ -10,7 +10,7 @@ class Action:
     def __init__(self, commands, action):
         self.commands = commands
         self.action = action
-    def action(**kwargs):
+    def action(*args):
         raise NotImplementedError()
 
 
@@ -78,7 +78,7 @@ def fightAction(*args):
     if foundTarget:
         combat.enter(player, world, target)
     else:
-        GUI.output(args + " cannot be attacked")
+        GUI.output(selectedTarget + " cannot be attacked")
 fight = Action(["fight", "attack", "combat"], fightAction)
 
 normalCommands = [close, teleport, go, fight]
