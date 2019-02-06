@@ -11,6 +11,8 @@ import items
 import time
 import copy
 
+import exceptions
+
 def play():
     stillPlaying = True
     thePlayer = entities.Player(16, [0, 0], [], 10)
@@ -52,6 +54,6 @@ def playTurn(thePlayer, world):
             getInput.enterCommand(thePlayer, world)
             print("3")
             inputValid = True
-        except ValueError:
-            output("Invalid Input")
+        except exceptions.InvalidInput as e:
+            output("Invalid Input: " + str(e))
 play()

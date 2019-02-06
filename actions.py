@@ -2,6 +2,8 @@
 import entities
 import copy
 import combat
+import exceptions
+import GUI
 
 class Action:
     commands = []
@@ -12,26 +14,35 @@ class Action:
         raise NotImplementedError()
 
 
-close = Action(["close", "exit", "end"], lambda: exit())
+close = Action(["close", "exit", "end"], lambda *args: exit())
 
-def teleportAction(**kwargs):
+def teleportAction(*args):
+    player = args[0]
+    world = args[1]
+    coords = args[2].split(",")
+    try:
+        x = int(coords[0])
+        y = int(coords[1])
+    except(ValueError, IndexError):
+        raise exceptions.InvalidInput("Co-ords for teleport should be in the form x,y")
+
     """Allows the user to teleport around"""
     try:
-        if world[int(args.split(",")[0])][int(args.split(",")[1])].getOpen():
-            player.position = [
-                                int(args.split(",")[0]),
-                                int(args.split(",")[1])
-                                ]
+        if world[x][y].open:
+            player.position = [x, y]
         else:
-            print("Room is locked")
-    except ValueError:
-        print("Out of range")
-teleport = Action(["teleport"], teleportAction)
+            GUI.output("Room is locked")
+    except (ValueError, IndexError):
+        GUI.output("Out of range")
+teleport = Action(["teleport", "tp"], teleportAction)
 
-def goAction(**kwargs):
+def goAction(*args):
     """Allows the player to move around the world"""
+
+    inputPlayer = args[0]
+    direction = args[2]
+
     player = copy.deepcopy(inputPlayer)
-    args = args.lower()
     try:
         if args == "north":
             player.position[0] -= 1
@@ -44,23 +55,27 @@ def goAction(**kwargs):
         assert(player.position[0] >= 0 and player.position[1] >= 0)
         world[player.position[0]][player.position[1]]
     except(AssertionError, IndexError):
-        return "You can't go that way"
+        GUI.output("You can't go that way")
     else:
         inputPlayer.previousPosition = inputPlayer.position
         inputPlayer.position = player.position
-go = Action(["go"], goAction)
+go = Action(["go", "move", "travel", "walk"], goAction)
 
-def fight(**kwargs):
+def fightAction(*args):
+    player = args[0]
+    world = args[1]
+    selectedTarget = args[2]
+
     foundTarget = False
     for thing in world[player.position[0]][player.position[1]].contained:
-        if type(thing) is entities.Enemy and args == thing.name and thing.isAlive():
+        if type(thing) is entities.Enemy and selectedTarget == thing.name and thing.isAlive():
             foundTarget = True
             target = thing
 
     if foundTarget:
         combat.enter(player, world, target)
     else:
-        print(args + " cannot be attacked")
+        GUI.output(args + " cannot be attacked")
+fight = Action(["fight", "attack", "combat"], fightAction)
 
-
-normalCommands = [close]
+normalCommands = [close, teleport, go, fight]

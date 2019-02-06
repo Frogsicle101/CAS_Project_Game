@@ -61,6 +61,18 @@ def press(event):
     inputTextBox.delete(0, END)
 
 def output(text, *args):
+
+    counter = 0
+    newText = ""
+    for char in text:
+        if counter > 40 and char == " ":
+            newText += "\n"
+            counter = 0
+        else:
+            newText += char
+        counter += 1
+    text = newText
+
     T.configure(state='normal')
     T.insert(END, text)
 
