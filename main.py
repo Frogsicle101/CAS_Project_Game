@@ -52,7 +52,6 @@ def playTurn(thePlayer, world):
             displayRoom(currentRoom)
             output("-"*50)
             getInput.enterCommand(thePlayer, world)
-            print("3")
             inputValid = True
         except exceptions.InvalidInput as e:
             output("Invalid Input: " + str(e))

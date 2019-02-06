@@ -40,18 +40,21 @@ def goAction(*args):
     """Allows the player to move around the world"""
 
     inputPlayer = args[0]
+    world = args [1]
     direction = args[2]
 
     player = copy.deepcopy(inputPlayer)
     try:
-        if args == "north":
+        if direction == "north":
             player.position[0] -= 1
-        elif args == "south":
+        elif direction == "south":
             player.position[0] += 1
-        elif args == "east":
+        elif direction == "east":
             player.position[1] += 1
-        elif args == "west":
+        elif direction == "west":
             player.position[1] -= 1
+        else:
+            raise exceptions.InvalidInput("Use 'North', 'South', 'East', or 'West'")
         assert(player.position[0] >= 0 and player.position[1] >= 0)
         world[player.position[0]][player.position[1]]
     except(AssertionError, IndexError):
