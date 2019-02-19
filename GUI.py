@@ -52,7 +52,7 @@ def getInput():
         root.update()
     return userInput
 
-def press(event):
+def press():
     global buttonPressed
     buttonPressed = True
     global inputTextBox
@@ -113,7 +113,7 @@ inputTextBox = Entry(inputFrame)
 inputTextBox.focus_set()
 
 b = Button(inputFrame,text='Enter',command=press)
-root.bind('<Return>', press)
+root.bind('<Return>', lambda event: press()) #Ignore event
 
 
 b.pack(side=RIGHT)
