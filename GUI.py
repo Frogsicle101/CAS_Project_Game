@@ -1,7 +1,8 @@
 from tkinter import *
-
+from tkinter import messagebox
 import time
 import copy
+import exceptions
 
 
 def runGame(*args):
@@ -38,6 +39,7 @@ def enterCommand(player, world):
 
 buttonPressed = False
 userInput = ""
+endingBool = False
 
 def getInput():
     global buttonPressed
@@ -45,11 +47,11 @@ def getInput():
     global userInput
     userInput = ""
 
-
-    while True:
-        if buttonPressed:
-            break
+    while not buttonPressed and not endingBool:
         root.update()
+    if endingBool:
+        root.destroy()
+        exit()
     return userInput
 
 def press():
@@ -119,3 +121,9 @@ root.bind('<Return>', lambda event: press()) #Ignore event
 b.pack(side=RIGHT)
 inputTextBox.pack(side=LEFT)
 T.pack(side=BOTTOM)
+
+def closing():
+    global endingBool
+    if messagebox.askokcancel("Quit", "Are you sure you want to quit?"):
+        endingBool = True
+root.protocol("WM_DELETE_WINDOW", closing)
