@@ -19,7 +19,10 @@ close = Action(["close", "exit", "end"], lambda *args: exit())
 def teleportAction(*args):
     player = args[0]
     world = args[1]
-    coords = args[2].split(",")
+    try:
+        coords = args[2].split(",")
+    except(IndexError):
+        raise exceptions.InvalidInput("Teleport where?")
     try:
         x = int(coords[0])
         y = int(coords[1])

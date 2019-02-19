@@ -4,7 +4,7 @@ import exceptions
 #This file is used for getting commands from the user
 
 def enterCommand(player, world):
-    userInput = GUI.getInput().lower()
+    userInput = GUI.getInput().strip().lower()
     splitInput = userInput.split(" ", 1)
 
     found = False
