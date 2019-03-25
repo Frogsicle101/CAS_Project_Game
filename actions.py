@@ -65,6 +65,7 @@ def goAction(*args):
     else:
         inputPlayer.previousPosition = inputPlayer.position
         inputPlayer.position = player.position
+        world[player.position[0]][player.position[1]].enteringMethod()
 go = Action(["go", "move", "travel", "walk"], goAction)
 
 def fightAction(*args):
