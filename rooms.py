@@ -7,6 +7,9 @@ class Room:
     def introText(self):
         raise NotImplementedError
 
+    def enteringMethod(self):
+        pass #Default is to pass - this will be overuled by rooms that need to
+
 class Corridor(Room):
     def introText(self):
         return """You are in a corridor"""
