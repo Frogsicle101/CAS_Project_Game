@@ -2,58 +2,87 @@
 import entities
 import copy
 import combat
+import exceptions
+import GUI
+
+class Action:
+    commands = []
+    def __init__(self, commands, action):
+        self.commands = commands
+        self.action = action
+    def action(*args):
+        raise NotImplementedError()
 
 
-def close(player, world):
-    """Ends the program"""
-    print("\n\nThank you for playing")
-    exit()
+close = Action(["close", "exit", "end"], lambda *args: exit())
 
-def teleport(player, world, args):
+def teleportAction(*args):
+    player = args[0]
+    world = args[1]
+    try:
+        coords = args[2].split(",")
+    except(IndexError):
+        raise exceptions.InvalidInput("Teleport where?")
+    try:
+        x = int(coords[0])
+        y = int(coords[1])
+    except(ValueError, IndexError):
+        raise exceptions.InvalidInput("Co-ords for teleport should be in the form x,y")
+
     """Allows the user to teleport around"""
     try:
-        if world[int(args.split(",")[0])][int(args.split(",")[1])].getOpen():
-            player.position = [
-                                int(args.split(",")[0]),
-                                int(args.split(",")[1])
-                                ]
+        if world[x][y].open:
+            player.position = [x, y]
         else:
-            print("Room is locked")
-    except ValueError:
-        print("Out of range")
+            GUI.output("Room is locked")
+    except (ValueError, IndexError):
+        GUI.output("Out of range")
+teleport = Action(["teleport", "tp"], teleportAction)
 
-def go(inputPlayer, world, args):
+def goAction(*args):
     """Allows the player to move around the world"""
+
+    inputPlayer = args[0]
+    world = args [1]
+    direction = args[2]
+
     player = copy.deepcopy(inputPlayer)
-    args = args.lower()
     try:
-        if args == "north":
+        if direction == "north":
             player.position[0] -= 1
-        elif args == "south":
+        elif direction == "south":
             player.position[0] += 1
-        elif args == "east":
+        elif direction == "east":
             player.position[1] += 1
-        elif args == "west":
+        elif direction == "west":
             player.position[1] -= 1
+        else:
+            raise exceptions.InvalidInput("Use 'North', 'South', 'East', or 'West'")
         assert(player.position[0] >= 0 and player.position[1] >= 0)
         world[player.position[0]][player.position[1]]
     except(AssertionError, IndexError):
-        print("You can't go that way")
+        GUI.output("You can't go that way")
     else:
         inputPlayer.previousPosition = inputPlayer.position
         inputPlayer.position = player.position
+        world[player.position[0]][player.position[1]].enteringMethod()
+go = Action(["go", "move", "travel", "walk"], goAction)
 
-def fight(player, world, args):
+def fightAction(*args):
+    player = args[0]
+    world = args[1]
+    selectedTarget = args[2]
+
     foundTarget = False
     for thing in world[player.position[0]][player.position[1]].contained:
-        if type(thing) is entities.Enemy and args == thing.name and thing.isAlive():
+        if type(thing) is entities.Enemy and selectedTarget == thing.name and thing.isAlive():
             foundTarget = True
             target = thing
 
     if foundTarget:
         combat.enter(player, world, target)
     else:
-        print(args + " cannot be attacked")
+        GUI.output(selectedTarget + " cannot be attacked")
+fight = Action(["fight", "attack", "combat"], fightAction)
 
-
-normalCommands = [teleport, close, go, fight]
+normalCommands = [close, teleport, go, fight]
