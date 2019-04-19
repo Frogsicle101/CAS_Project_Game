@@ -1,9 +1,10 @@
+
 import scripted_encounter_main
-ER = false
-if ER == false:
+ER = 0
+if ER == 0:
     print("Sitting behind a large, wooden desk with a rotting, wormy apple atop it, is your English teacher. Ms. Kassandra. But she looks...different. \nWhere her legs once were, are the hind quarters of a lion. Sprouting from her back are wings like that of an eagle. \nMost odd though, is that she's wearing a sweater that doesn't age her appearance twenty years. Welcome to class! I hope you're ready to dive right back into classic literature!\n")
     c1 = scripted_encounter_main.choice(["Whatever", "Sure!", "What..happned to you?", "What's wrong wtih everyone here?"])
-    ER = true
+    ER = 1
     if c1==0:
         print("\nWell that's not very polite!\n" )
     elif c1==1:

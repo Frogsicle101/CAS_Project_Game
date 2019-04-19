@@ -13,6 +13,7 @@ import copy
 
 import exceptions
 
+
 def play():
     stillPlaying = True
     thePlayer = entities.Player(16, [0, 0], [], 10)

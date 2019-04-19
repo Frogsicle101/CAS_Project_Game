@@ -1,3 +1,5 @@
+
+
 class Room:
     """Generic class for all rooms"""
     def __init__(self, contained):
@@ -8,7 +10,7 @@ class Room:
         raise NotImplementedError
 
     def enteringMethod(self):
-        pass #Default is to pass - this will be overuled by rooms that need to
+        pass
 
 class Corridor(Room):
     def introText(self):
@@ -48,21 +50,23 @@ class MUNRoom(Room):
         with a row of nearly arrayed desks, each with a placard with a
         country's name and a flag."""
 
- class CodingClub(Room):
+class CodingClub(Room):
      def intoText(self):
          return """You enter a room that smells like the bottom of a chips packet. Dotted around the room
          are the faint hues of monitors. Behind those
          monitors, are the sunken faces of high-school
          coders."""
 
- class  Gym(Room):
+class  Gym(Room):
      def intoText(self):
          return """Entering the gym, you are greeted with squeaky floors and a ceiling that's infinitely high."""
 
-  class AnimeClub(Room):
-      def introText(Self):
-          return """Pushing open the door, you find yourself in a dark classroom. The only light in the room comes from a projector screen near the front of the classroom. On it, animated figures speak in rushed Japanese."""
+class AnimeClub(Room):
+     def introText(Self):
+         return """Pushing open the door, you find yourself in a dark classroom. The only light in the room comes from a projector screen near the front of the classroom. On it, animated figures speak in rushed Japanese."""
 
-  class EnglishRoom(Room):
-      def introText(Self):
-          return """You find yourself in a room covered in the scent of old carpet, creaky floorboards, and rancid coffee. The rancid coffee scent originates from a decaying blue mug. Holding that blue mug is the hook-nosed Ms. Crowley, your English teacher. """
+class EnglishRoom(Room):
+     def introText(Self):
+         return """You find yourself in a room covered in the scent of old carpet, creaky floorboards, and rancid coffee. The rancid coffee scent originates from a decaying blue mug. Holding that blue mug is the hook-nosed Ms. Crowley, your English teacher. """
+     def enteringMethod(self):
+         import scripted_encounter_ER
