@@ -28,8 +28,8 @@ Shoggoth = entities.Enemy("Shoggoth", 10, appendage, 8)
 plastic_katana = items.Weapon("plastic katana", 1, 0)
 Weaboo = entities.Enemy("Weaboo", 2, plastic_katana, 1)
 world = [
-    [tile.EnglishRoom([]), tile.DoorRoom([]), tile.IceAgeRoom([])],
-    [tile.Corridor([])],
+    [tile.DoorRoom([]), tile.IceAgeRoom([])],
+    [tile.HistoryRoom([])],
     [tile.IceAgeRoom([])],
     [tile.OtherRoom([])],
     [tile.Corridor([])]

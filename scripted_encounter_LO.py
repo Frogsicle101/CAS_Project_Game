@@ -1,4 +1,7 @@
+from GUI import *
 import scripted_encounter_main
+
+def scripted_encounter_runner():
 
 openNum = randomint(3, 10)
 pCounter = 0

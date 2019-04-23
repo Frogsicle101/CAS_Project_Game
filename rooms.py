@@ -1,4 +1,5 @@
 import scripted_encounter_ER
+import scripted_encounter_HI
 
 class Room:
     """Generic class for all rooms"""
@@ -70,3 +71,9 @@ class EnglishRoom(Room):
          return """You find yourself in a room covered in the scent of old carpet, creaky floorboards, and rancid coffee. The rancid coffee scent originates from a decaying blue mug. Holding that blue mug is the hook-nosed Ms. Crowley, your English teacher. """
      def enteringMethod(self):
          scripted_encounter_ER.scripted_encounter_runner()
+
+class HistoryRoom(Room):
+     def introText(Self):
+         return """. """
+     def enteringMethod(self):
+         scripted_encounter_HI.scripted_encounter_runner()

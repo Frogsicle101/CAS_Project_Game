@@ -1,4 +1,7 @@
+from GUI import *
 import scripted_encounter_main
+
+def scripted_encounter_runner():
 SC = false
 if SC == false:
     print("Pacing the front of the room is someone who must be your science teacher, Mr. Pitters, but he's now 1 foot shorter, covered in green skin, and has a scrunched up, rat-like face. In his hands are vials full of frothing, exotically colored liquids. He looks at you, mania dancing in his eyes, his teeth bared in a hungry leer. 'Are you ready for your chemistry assignment?'\n")
